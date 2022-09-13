@@ -1,0 +1,2 @@
+class PetOwner < ApplicationRecord
+end
