@@ -4,6 +4,7 @@ import Home from "./Home";
 import Login from "./Login";
 import PetSitters from "./PetSitters";
 import Signup from "./SignUp";
+import MyAccount from "./MyAccount";
 
 
 
@@ -24,6 +25,9 @@ function NavBar() {
             <li>
               <Link to="/login">Login</Link>
             </li>
+            <li>
+              <Link to="/myaccount">My Account</Link>
+            </li>
           </ul>
   
           <hr />
@@ -40,6 +44,9 @@ function NavBar() {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/myaccount">
+              <MyAccount/>
             </Route>
           </Switch>
         </div>
