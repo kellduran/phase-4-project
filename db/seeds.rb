@@ -13,7 +13,7 @@ puts "🌱 Seeding..."
 
 
 puts "Making pet owners..."                        
-20.times {PetOwner.create(name: Faker::FunnyName.name,
+20.times {PetOwner.create!(name: Faker::FunnyName.name,
                            address: Faker::Address.street_name)} 
 
 

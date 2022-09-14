@@ -1,9 +1,12 @@
 import React from "react";
+import Logout from "./Logout";
 
 
 function Footer() {
     return(
-        <div>This is the Footer</div>
+        <div>
+            <h1>this is the Footer</h1>
+        </div>
     )
 }
 
