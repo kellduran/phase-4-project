@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import {useHistory} from 'react-router-dom'
+
 
 
 function Signup({ setCurrentUser }) {
 
+    const history = useHistory()
 
     const [formData, setFormData] = useState({
         username: "",
@@ -38,7 +41,7 @@ function Signup({ setCurrentUser }) {
             if (res.ok) {
                 res.json().then((user) => {
                     setCurrentUser(user)
-                    refreshPage()
+                    history.push('/')
                 });
             } else {
                 res.json().then((errors) => {

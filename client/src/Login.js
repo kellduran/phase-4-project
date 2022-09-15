@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import {useHistory} from 'react-router-dom'
+
 
 
 function Login({ setCurrentUser }) {
+
+    const history = useHistory()
 
     const [loggedIn, setLoggedIn] = useState({
         username: "",
@@ -27,6 +31,7 @@ function Login({ setCurrentUser }) {
             if (res.ok) {
             res.json().then((user) => {
                 setCurrentUser(user);
+                history.push('/')
             });
             } else {
             res.json().then((errors) => {

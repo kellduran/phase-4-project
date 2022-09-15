@@ -1,15 +1,20 @@
 import React from "react";
 import { useState } from "react";
+import {useHistory} from 'react-router-dom'
 
 
-function Logout({ setCurrentUser }) {
+function Logout({ setCurrentUser, setIsAuthenticated }) {
+
+    const history = useHistory()
 
 
     const handleLogout = () => {
         fetch('/logout', {method: "DELETE"})
         .then(res => {
               if (res.ok) {
-                setCurrentUser(null)
+                setCurrentUser("")
+                setIsAuthenticated(false)
+                history.push('/logout')
               }
             })
       }

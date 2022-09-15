@@ -7,6 +7,7 @@ import PetSitters from "./PetSitters";
 import Signup from "./SignUp";
 import MyAccount from "./MyAccount";
 import Logout from "./Logout";
+import LoggedOut from "./LoggedOut";
 
 
 
@@ -14,7 +15,7 @@ function NavBar() {
 
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -22,7 +23,6 @@ function NavBar() {
         res.json().then((user) => {
           setCurrentUser(user);
           setIsAuthenticated(true);
-          console.log(user)
         });
       }
     });
@@ -30,10 +30,11 @@ function NavBar() {
 
   if (!isAuthenticated) {
     return <div>
-        <h1>Not Authenticated</h1>
+        {/* <h1>Not Authenticated</h1>
         <Signup></Signup>
         <h1>or login</h1>
-        <Login></Login>
+        <Login></Login> */}
+        <LoggedOut />
       </div>;
   }
   // return (
@@ -62,7 +63,7 @@ function NavBar() {
               <Link to="/myaccount">My Account</Link>
             </li>
           </ul>
-          <Logout setCurrentUser={setCurrentUser}/>
+          <Logout setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated}/>
   
           <hr />
   
@@ -81,6 +82,9 @@ function NavBar() {
             </Route>
             <Route path="/myaccount">
               <MyAccount/>
+            </Route>
+            <Route path="/logout">
+              <LoggedOut setCurrentUser={setCurrentUser}/>
             </Route>
           </Switch>
         </div>
