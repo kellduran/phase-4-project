@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PetCard from "./ PetCard";
 
 
 function MyAccount({currentUser}) {
@@ -9,6 +10,16 @@ function MyAccount({currentUser}) {
           .then((r) => r.json())
           .then(setPets);
       }, [pets]);
+
+
+      const displayPets = pets.map((pet) =>{
+        return(
+            <PetCard 
+            key = {pet.id}
+            pet = {pet}
+            />
+        )
+      })
 
       const [formData, setFormData] = useState({
         name: "",
@@ -59,22 +70,23 @@ function MyAccount({currentUser}) {
         });
     }
 
-    
 
     return(
         <div>
             <h1>This is the PetSitters Account</h1>
-           
-            { pets.map((pet) => (
-                <>
-                    <h2> {pet.name} </h2>
-                    <h2>{pet.animal} </h2>
-                    <img src={pet.image}></img>
-                    <h3> Size: {pet.size} </h3>
-                    <h3> Age: {pet.age} </h3> 
-                </>
+            {displayPets}           
+            {/* { pets.map((pet) => (
+
+                // <>
+                //     <h2> {pet.name} </h2>
+                //     <h2>{pet.animal} </h2>
+                //     <img src={pet.image}></img>
+                //     <h3> Size: {pet.size} </h3>
+                //     <h3> Age: {pet.age} </h3> 
+                //     <button onClick={ handleClick } >Update</button>
+                // </>
                 ))    
-            }
+            } */}
         
             <h2>Upload your animal</h2>
             <form onSubmit={ handleSubmit }>

@@ -8,6 +8,7 @@ import Signup from "./SignUp";
 import MyAccount from "./MyAccount";
 import Logout from "./Logout";
 import LoggedOut from "./LoggedOut";
+import UpdatePet from "./UpdatePet";
 
 
 
@@ -87,6 +88,9 @@ function NavBar() {
             </Route>
             <Route path="/myaccount">
               <MyAccount currentUser={currentUser}/>
+            </Route>
+            <Route exact path= "/pets/:id">
+              <UpdatePet/>
             </Route>
             <Route path="/logout">
               <LoggedOut setCurrentUser={setCurrentUser} currentUser={currentUser}/>
