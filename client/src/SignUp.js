@@ -10,7 +10,7 @@ import TitleStyle from "./styled-comps/TitleStyle"
 
 function Signup() {
 
-    const [currentUser, setCurrentUser] = useState()
+    // const [currentUser, setCurrentUser] = useState() <--- added as a workaround, what i was talking about
     
     const [formData, setFormData] = useState({
         username: "",
