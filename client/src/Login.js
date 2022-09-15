@@ -1,86 +1,90 @@
 import React, { useState } from "react";
-import {useHistory} from 'react-router-dom'
+import ReactDOM from "react-dom";
+import BackgroundStyle from "./styled-comps/BackgroundStyle";
+import StyledButton from "./styled-comps/StyledButton"
+import StyledForm from "./styled-comps/StyledForm"
+import TitleStyle from "./styled-comps/TitleStyle"
 
+function Login() {
+  // React States
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // User Login info
+  const database = [
+    {
+      username: "user1",
+      password: "pass1"
+    },
+    {
+      username: "user2",
+      password: "pass2"
+    }
+  ];
 
-function Login({ setCurrentUser }) {
+  const errors = {
+    uname: "invalid username",
+    pass: "invalid password"
+  };
 
-    const history = useHistory()
+  const handleSubmit = (event) => {
+    //Prevent page reload
+    event.preventDefault();
 
-    const [loggedIn, setLoggedIn] = useState({
-        username: "",
-        password: ""
-        })
+    var { uname, pass } = document.forms[0];
 
-        const handleChange = (e) => {
-            setLoggedIn({
-              ...loggedIn,
-              [e.target.name]: e.target.value,
-            });
-          };
+    // Find user login info
+    const userData = database.find((user) => user.username === uname.value);
 
-        const handleSubmit = (event) => {
-        event.preventDefault();
-        fetch("/login", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify(loggedIn),
-        }).then((res) => {
-            if (res.ok) {
-            res.json().then((user) => {
-                setCurrentUser(user);
-                history.push('/')
-            });
-            } else {
-            res.json().then((errors) => {
-                console.error(errors);
-            });
-            }
-        });
-        };
-          
-          
+    // Compare user info
+    if (userData) {
+      if (userData.password !== pass.value) {
+        // Invalid password
+        setErrorMessages({ name: "pass", message: errors.pass });
+      } else {
+        setIsSubmitted(true);
+      }
+    } else {
+      // Username not found
+      setErrorMessages({ name: "uname", message: errors.uname });
+    }
+  };
 
+  // Generate JSX code for error message
+  const renderErrorMessage = (name) =>
+    name === errorMessages.name && (
+      <div className="error">{errorMessages.message}</div>
+    );
 
-    return(
-        <div className="Auth-form-container">
-        <form className="Auth-form" onSubmit={handleSubmit}>
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
-            <div className="form-group mt-3">
-              <input
-                type="text"
-                className="form-control mt-1"
-                placeholder="Username"
-                name="username"
-                value={loggedIn.username}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group mt-3">
-              <input
-                type="password"
-                className="form-control mt-1"
-                placeholder="Enter password"
-                name="password"
-                value={loggedIn.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </div>
-            <p className="forgot-password text-right mt-2">
-              Forgot <a href="#">password?</a>
-            </p>
-          </div>
-        </form>
+  // JSX code for login form
+  const renderForm = (
+    <BackgroundStyle>
+      <StyledForm onSubmit={handleSubmit}><TitleStyle.LoginStyle>Login</TitleStyle.LoginStyle>
+        <div className="input-container">
+    
+          <StyledForm.Input type="text" name="uname" required placeholder="Username" />
+          {renderErrorMessage("uname")}
+        </div>
+        <div className="input-container">
+
+          <StyledForm.Input type="password" name="pass" required placeholder="Password"/>
+          {renderErrorMessage("pass")}
+        </div>
+        <div className="button-container">
+          <StyledButton type="submit">Login</StyledButton>
+        </div>
+      </StyledForm>
+    </BackgroundStyle>
+  );
+
+  return (
+    <div className="app">
+      <div className="login-form">
+        <div className="title"></div>
+        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
-    )
+    </div>
+  );
 }
 
 export default Login;

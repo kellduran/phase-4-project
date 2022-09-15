@@ -1,23 +1,25 @@
 import React from "react";
-import CenterHome from "./Styles/PageGrid.Style"
-
+import BackgroundStyle from "./styled-comps/BackgroundStyle"
+import TitleStyle from "./styled-comps/TitleStyle"
+import StyledButton from "./styled-comps/StyledButton"
+import StyledForm from "./styled-comps/StyledForm"
 
 function Home() {
     return(
-        <div>
-            <h1>This is the Home</h1>
-                <CenterHome>
-                    <form>
-                        <div>Boarding</div>
-                        <div>House Sitting</div>
-                        <div>Drop-in Visits</div>
-                        <div>Doggy Day Care</div>
-                        <div>Dog Walking</div>
-                        <input type="text" placeholder="enter zip code"></input>
+        <BackgroundStyle>
+            
+                <div>
+                    <StyledForm><TitleStyle>Tall Tails</TitleStyle>
+                        <StyledButton.HomeButton>Boarding</StyledButton.HomeButton>
+                        <StyledButton.HomeButton>House Sitting</StyledButton.HomeButton>
+                        <StyledButton.HomeButton>Drop-in Visits</StyledButton.HomeButton>
+                        <StyledButton.HomeButton>Doggy Day Care</StyledButton.HomeButton>
+                        <StyledButton.HomeButton>Dog Walking</StyledButton.HomeButton>
+                        <StyledForm.HomeInput type="text" placeholder="enter zip code"></StyledForm.HomeInput>
                         <button>Search</button>
-                    </form>
-                </CenterHome>
-        </div>
+                    </StyledForm>
+                </div>
+        </BackgroundStyle>
     )
 }
 
