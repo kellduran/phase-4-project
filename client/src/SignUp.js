@@ -1,7 +1,11 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
+import {useHistory} from 'react-router-dom'
 
 
-function Signup() {
+
+function Signup({ setCurrentUser }) {
+
+    const history = useHistory()
 
     const [formData, setFormData] = useState({
         username: "",
@@ -16,10 +20,16 @@ function Signup() {
         });
     };
 
+
+
     function handleSubmit(e) {
         e.preventDefault();
 
         const userCreds = { ...formData };
+
+        function refreshPage() {
+            window.location.reload(true);
+          }
         
         fetch("/signup", {
             method: "POST",
@@ -30,7 +40,8 @@ function Signup() {
         }).then((res) => {
             if (res.ok) {
                 res.json().then((user) => {
-                    setCurrentUser(user);
+                    setCurrentUser(user)
+                    history.push('/')
                 });
             } else {
                 res.json().then((errors) => {
@@ -45,9 +56,9 @@ function Signup() {
             <h1>Sign up page</h1>
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="username" name="username" value={formData.username} onChange={handleChange}></input>
-                <input type="text" placeholder="password" name="password" value={formData.password} onChange={handleChange}></input>
-                <input type="text" placeholder="confirm password"></input>
-                <input type="text" placeholder="name" name="name" value={formData.name} onChange={handleChange}></input>
+                <input type="password" placeholder="password" name="password" value={formData.password} onChange={handleChange}></input>
+                <input type="password" placeholder="confirm password"></input>
+                <input type="text" placeholder="name" name="name"value={formData.name} onChange={handleChange}></input>
                 <input type="text" placeholder="address" name="address" value={formData.address} onChange={handleChange}></input>
                 
                 <button>Sign Up</button>
