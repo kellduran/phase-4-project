@@ -27,9 +27,9 @@ function Signup({ setCurrentUser }) {
 
         const userCreds = { ...formData };
 
-        function refreshPage() {
-            window.location.reload(true);
-          }
+        // function refreshPage() {
+        //     window.location.reload(true);
+        //   }
         
         fetch("/signup", {
             method: "POST",
