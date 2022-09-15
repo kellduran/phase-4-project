@@ -16,7 +16,7 @@ function Home() {
                         <StyledButton.HomeButton>Doggy Day Care</StyledButton.HomeButton>
                         <StyledButton.HomeButton>Dog Walking</StyledButton.HomeButton>
                         <StyledForm.HomeInput type="text" placeholder="enter zip code"></StyledForm.HomeInput>
-                        <button>Search</button>
+                        <StyledButton>Search</StyledButton>
                     </StyledForm>
                 </div>
         </BackgroundStyle>

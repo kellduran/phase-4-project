@@ -59,7 +59,7 @@ function Login() {
   // JSX code for login form
   const renderForm = (
     <BackgroundStyle>
-      <StyledForm onSubmit={handleSubmit}><TitleStyle.LoginStyle>Login</TitleStyle.LoginStyle>
+      <StyledForm onSubmit={handleSubmit}><TitleStyle>Login</TitleStyle>
         <div className="input-container">
     
           <StyledForm.Input type="text" name="uname" required placeholder="Username" />

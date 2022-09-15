@@ -25,7 +25,7 @@ margin: 5px 0px;
 const HomeInput = styled.input`
 
 font-family: 'News Cycle', sans-serif;
-padding: 5px 10px;
+padding: 5px 20px;
 width: 75%;
 margin: 10px 0px;
 

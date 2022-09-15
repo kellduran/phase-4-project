@@ -8,7 +8,7 @@ import TitleStyle from "./styled-comps/TitleStyle"
 function MyAccount() {
     return(
         <BackgroundStyle>
-            <StyledForm><TitleStyle.LoginStyle>Upload your animal</TitleStyle.LoginStyle>
+            <StyledForm><TitleStyle>Upload your animal</TitleStyle>
                 <StyledForm.HomeInput type="text" placeholder="Pet name"></StyledForm.HomeInput>
                 <StyledForm.HomeInput type="text" placeholder="animal"></StyledForm.HomeInput>
                 <StyledForm.HomeInput type="text" placeholder="breed"></StyledForm.HomeInput>

@@ -10,7 +10,7 @@ import TitleStyle from "./styled-comps/TitleStyle"
 
 function Signup() {
 
-    // const [currentUser, setCurrentUser] = useState() <--- added as a workaround, what i was talking about
+    // const [currentUser, setCurrentUser] = useState() <---- workaround, thing i said
     
     const [formData, setFormData] = useState({
         username: "",
@@ -50,18 +50,17 @@ function Signup() {
     }
 
     return(
-        <div>
-            <h1>Sign up page</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="username" name="username" value={formData.username} onChange={handleChange}></input>
-                <input type="text" placeholder="password" name="password" value={formData.password} onChange={handleChange}></input>
-                <input type="text" placeholder="confirm password"></input>
-                <input type="text" placeholder="name" name="name" value={formData.name} onChange={handleChange}></input>
-                <input type="text" placeholder="address" name="address" value={formData.address} onChange={handleChange}></input>
+        <BackgroundStyle>
+            <StyledForm onSubmit={handleSubmit}><TitleStyle>Sign up page</TitleStyle>
+                <StyledForm.HomeInput type="text" placeholder="username" name="username" value={formData.username} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="password" placeholder="password" name="password" value={formData.password} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="password" placeholder="confirm password"></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="name" name="name" value={formData.name} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="address" name="address" value={formData.address} onChange={handleChange}></StyledForm.HomeInput>
                 
-                <button>Sign Up</button>
-            </form>
-        </div>
+                <StyledButton type="submit">Sign Up</StyledButton>
+            </StyledForm>
+        </BackgroundStyle>
     )
 }
 
