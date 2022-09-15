@@ -1,3 +1,3 @@
 class PetOwnerSerializer < ActiveModel::Serializer
-  attributes  :name, :address
+  attributes  :name, :address, :username, :id
 end

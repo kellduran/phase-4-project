@@ -23,10 +23,15 @@ function NavBar() {
         res.json().then((user) => {
           setCurrentUser(user);
           setIsAuthenticated(true);
+          console.log(currentUser.id)
         });
       }
     });
   }, []);
+
+  // useEffect(()=> {
+  //   fetch("/")
+  // })
 
   if (!isAuthenticated) {
     return <div>
@@ -81,10 +86,10 @@ function NavBar() {
               <Login setCurrentUser={setCurrentUser}/>
             </Route>
             <Route path="/myaccount">
-              <MyAccount/>
+              <MyAccount currentUser={currentUser}/>
             </Route>
             <Route path="/logout">
-              <LoggedOut setCurrentUser={setCurrentUser}/>
+              <LoggedOut setCurrentUser={setCurrentUser} currentUser={currentUser}/>
             </Route>
           </Switch>
         </div>

@@ -4,13 +4,13 @@ import Login from "./Login";
 
 
 
-function LoggedOut() {
+function LoggedOut({setCurrentUser, currentUser}) {
     return(
         <div>
             <h1>Not Logged in. Please sign up or log in</h1>
-            <Signup />
+            <Signup setCurrentUser={setCurrentUser} currentUser={currentUser}/>
             <h1>or login</h1>
-            <Login />
+            <Login setCurrentUser={setCurrentUser} currentUser={currentUser} />
         </div>
     )
 }
