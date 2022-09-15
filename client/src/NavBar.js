@@ -90,7 +90,7 @@ function NavBar() {
               <MyAccount currentUser={currentUser}/>
             </Route>
             <Route exact path= "/pets/:id">
-              <UpdatePet/>
+              <UpdatePet currentUser={currentUser}/>
             </Route>
             <Route path="/logout">
               <LoggedOut setCurrentUser={setCurrentUser} currentUser={currentUser}/>

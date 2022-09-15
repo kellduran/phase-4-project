@@ -17,6 +17,7 @@ function MyAccount({currentUser}) {
             <PetCard 
             key = {pet.id}
             pet = {pet}
+            currentUser= {currentUser}
             />
         )
       })
