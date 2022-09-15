@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   #routes to signup & stay logged in & Login & Logout
   post "/signup", to: "pet_owners#create"
 
-  # get "/me", to: "users#show"
+  get "/me", to: "pet_owners#show"
 
-  # post "/login", to: "sessions#create"
+  post "/login", to: "sessions#create"
 
-  # delete "/logout", to: "sessions#destroy"
+  delete "/logout", to: "sessions#destroy"
 end
