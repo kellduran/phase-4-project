@@ -9,7 +9,7 @@ function MyAccount({currentUser}) {
         fetch(`/pets/${currentUser.id}`)
           .then((r) => r.json())
           .then(setPets);
-      }, [pets]);
+      }, []);
 
 
       const displayPets = pets.map((pet) =>{

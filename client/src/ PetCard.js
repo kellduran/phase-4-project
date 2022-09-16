@@ -5,7 +5,6 @@ function PetCard({pet, currentUser}){
 
     const { id } = pet
 
-
     const [petId, setPetId] = useState(`${id}`)
 
     function handleClick (){
@@ -13,6 +12,11 @@ function PetCard({pet, currentUser}){
         setPetId(id)
 
     }
+
+
+    function refreshPage() {
+        window.location.reload(true);
+      }
 
     const [formData, setFormData] = useState({
         name: `${pet.name}`,
@@ -42,6 +46,7 @@ function PetCard({pet, currentUser}){
       })
         .then(res => res.json())
         .then(data => console.log(data))
+        .then(refreshPage())
         
 
 
@@ -50,6 +55,9 @@ function PetCard({pet, currentUser}){
 
     function handleDelete(){
         console.log("hello")
+        fetch(`/pets/${id}`, {
+            method: 'DELETE'
+          }).then(refreshPage())
     }
         
 
