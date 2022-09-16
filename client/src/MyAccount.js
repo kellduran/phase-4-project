@@ -5,6 +5,8 @@ import PetCard from "./ PetCard";
 function MyAccount({currentUser, appts}) {
     const [pets, setPets]  = useState([])
 
+    const [userAppts, setUserAppts] = useState()
+
 
     useEffect(() => {
         fetch(`/pets/${currentUser.id}`)
@@ -15,7 +17,7 @@ function MyAccount({currentUser, appts}) {
       useEffect(() => {
         fetch(`/appointments/${currentUser.id}`)
         .then((res) => res.json())
-        .then((data) => console.log(data), "this is ")
+        .then((data) => setUserAppts(data), "this is ")
       }, [currentUser]);
 
       
@@ -78,12 +80,24 @@ function MyAccount({currentUser, appts}) {
         });
     }
 
+    function handleClick() {
+        console.log(userAppts)
+    }
+
 
     return(
         <div>
             <h1>This is the PetSitters Account</h1>
             {displayPets}   
-            {appts}        
+            {appts}
+            <button onClick={handleClick}>Show appts</button>
+            {userAppts.map((userAppt) => (
+                <div>
+                    <div>id: {userAppt.id}</div>
+                    <div>service: {userAppt.service}</div>
+                    <div>pet name: {userAppt.pet_name}</div>
+                </div>
+            ))}        
             {/* { pets.map((pet) => (
 
                 // <>
