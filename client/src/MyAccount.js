@@ -1,5 +1,10 @@
+
 import React, { useState, useEffect } from "react";
 import PetCard from "./ PetCard";
+import BackgroundStyle from "./styled-comps/BackgroundStyle";
+import StyledButton from "./styled-comps/StyledButton"
+import StyledForm from "./styled-comps/StyledForm"
+import TitleStyle from "./styled-comps/TitleStyle"
 
 
 function MyAccount({currentUser, appts}) {
@@ -92,6 +97,7 @@ function MyAccount({currentUser, appts}) {
         });
     }
 
+
     function refreshPage() {
         window.location.reload(true);
       }
@@ -105,9 +111,10 @@ function MyAccount({currentUser, appts}) {
         )
     }
 
+
     console.log(userAppts)
     return(
-        <div>
+        <BackgroundStyle>
             <h1>This is the PetSitters Account</h1>
             {displayPets}   
             {appts}
@@ -132,16 +139,17 @@ function MyAccount({currentUser, appts}) {
                 ))    
             } */}
         
-            <h2>Upload your animal</h2>
-            <form onSubmit={ handleSubmit }>
-                <input type="text" placeholder="Pet name" name="name" value={formData.name} onChange={handleChange}></input>
-                <input type="text" placeholder="breed" name="breed" value={formData.breed} onChange={handleChange}></input>
-                <input type="text" placeholder="age" name="age" value={formData.age} onChange={handleChange}></input>
-                <input type="text" placeholder="size" name="size" value={formData.size} onChange={handleChange}></input>
-                <input type="text" placeholder="image" name="image" value={formData.image} onChange={handleChange}></input>
-                <button>upload pet</button>
-            </form>        
-        </div>
+            
+            <StyledForm onSubmit={ handleSubmit }><TitleStyle>Upload your animal</TitleStyle>
+                <StyledForm.HomeInput type="text" placeholder="Pet name" name="name" value={formData.name} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="breed" name="breed" value={formData.breed} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="age" name="age" value={formData.age} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="size" name="size" value={formData.size} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="image" name="image" value={formData.image} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledButton>upload pet</StyledButton>
+            </StyledForm>        
+        </BackgroundStyle>
+
     )
 }
 

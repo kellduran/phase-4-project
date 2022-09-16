@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import {useHistory} from 'react-router-dom'
+import React, { useState } from "react"; 
+import BackgroundStyle from "./styled-comps/BackgroundStyle"
+import NavbarContainer from "./styled-comps/NavbarContainer"
+import StyledButton from "./styled-comps/StyledButton"
+import StyledForm from "./styled-comps/StyledForm"
+import theme from "./styled-comps/theme"
+import TitleStyle from "./styled-comps/TitleStyle"
 
 
 
-function Signup({ setCurrentUser }) {
+function Signup() {
 
-    const history = useHistory()
-
+    // const [currentUser, setCurrentUser] = useState() <---- workaround, thing i said
+    
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -20,16 +25,10 @@ function Signup({ setCurrentUser }) {
         });
     };
 
-
-
     function handleSubmit(e) {
         e.preventDefault();
 
         const userCreds = { ...formData };
-
-        // function refreshPage() {
-        //     window.location.reload(true);
-        //   }
         
         fetch("/signup", {
             method: "POST",
@@ -40,8 +39,7 @@ function Signup({ setCurrentUser }) {
         }).then((res) => {
             if (res.ok) {
                 res.json().then((user) => {
-                    setCurrentUser(user)
-                    history.push('/')
+                    setCurrentUser(user);
                 });
             } else {
                 res.json().then((errors) => {
@@ -54,18 +52,17 @@ function Signup({ setCurrentUser }) {
     console.log(setCurrentUser)
 
     return(
-        <div>
-            <h1>Sign up page</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="username" name="username" value={formData.username} onChange={handleChange}></input>
-                <input type="password" placeholder="password" name="password" value={formData.password} onChange={handleChange}></input>
-                <input type="password" placeholder="confirm password"></input>
-                <input type="text" placeholder="name" name="name"value={formData.name} onChange={handleChange}></input>
-                <input type="text" placeholder="address" name="address" value={formData.address} onChange={handleChange}></input>
+        <BackgroundStyle>
+            <StyledForm onSubmit={handleSubmit}><TitleStyle>Sign up page</TitleStyle>
+                <StyledForm.HomeInput type="text" placeholder="username" name="username" value={formData.username} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="password" placeholder="password" name="password" value={formData.password} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="password" placeholder="confirm password"></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="name" name="name" value={formData.name} onChange={handleChange}></StyledForm.HomeInput>
+                <StyledForm.HomeInput type="text" placeholder="address" name="address" value={formData.address} onChange={handleChange}></StyledForm.HomeInput>
                 
-                <button>Sign Up</button>
-            </form>
-        </div>
+                <StyledButton type="submit">Sign Up</StyledButton>
+            </StyledForm>
+        </BackgroundStyle>
     )
 }
 
