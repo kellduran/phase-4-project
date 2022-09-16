@@ -51,6 +51,8 @@ function Signup({ setCurrentUser }) {
         });
     }
 
+    console.log(setCurrentUser)
+
     return(
         <div>
             <h1>Sign up page</h1>

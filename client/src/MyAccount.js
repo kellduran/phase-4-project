@@ -5,19 +5,31 @@ import PetCard from "./ PetCard";
 function MyAccount({currentUser, appts}) {
     const [pets, setPets]  = useState([])
 
-    const [userAppts, setUserAppts] = useState()
+    const [userAppts, setUserAppts] = useState([])
+
+    console.log(pets)
+
+    function refreshPage() {
+        window.location.reload(true);
+      }
 
 
     useEffect(() => {
         fetch(`/pets/${currentUser.id}`)
-          .then((r) => r.json())
-          .then(setPets);
+          .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => {setPets(data)})
+            }
+          })
       }, []);
 
       useEffect(() => {
         fetch(`/appointments/${currentUser.id}`)
-        .then((res) => res.json())
-        .then((data) => setUserAppts(data), "this is ")
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => setUserAppts(data))
+            }
+        })
       }, [currentUser]);
 
       
@@ -55,9 +67,9 @@ function MyAccount({currentUser, appts}) {
         const userCreds = { ...formData };
         console.log(userCreds)
 
-        function refreshPage() {
-            window.location.reload(true);
-          }
+        // function refreshPage() {
+        //     window.location.reload(true);
+        //   }
         
         fetch("/pets", {
             method: "POST",
@@ -68,10 +80,10 @@ function MyAccount({currentUser, appts}) {
         }).then((res) => {
             if (res.ok) {
                 res.json().then(() => {
-                    setPets({
+                    setPets([
                         ...pets, userCreds
-                    })
-            }).then(refreshPage()); 
+                    ])
+            }).then(); 
             } else {
                 res.json().then((errors) => {
                     console.error(errors);
@@ -80,11 +92,20 @@ function MyAccount({currentUser, appts}) {
         });
     }
 
+    function refreshPage() {
+        window.location.reload(true);
+      }
+
     function handleClick() {
+
+        return( 
         console.log(userAppts)
+
+        
+        )
     }
 
-
+    console.log(userAppts)
     return(
         <div>
             <h1>This is the PetSitters Account</h1>

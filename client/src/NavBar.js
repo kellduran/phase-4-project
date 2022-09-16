@@ -38,20 +38,23 @@ function NavBar() {
 
  
 
-  if (!isAuthenticated) {
-    return <div>
-        {/* <h1>Not Authenticated</h1>
-        <Signup></Signup>
-        <h1>or login</h1>
-        <Login></Login> */}
-        <LoggedOut />
-      </div>;
-  }
+  // if (!isAuthenticated) {
+  //   return <div>
+  //       {/* <h1>Not Authenticated</h1>
+  //       <Signup></Signup>
+  //       <h1>or login</h1>
+  //       <Login></Login> */}
+  //       <LoggedOut />
+  //     </div>;
+  // }
+
   // return (
   //   <div className="app">
   //     <Router>{false ? <LoggedIn /> : <LoggedOut />}</Router>
   //   </div>
   // )
+
+  console.log(setCurrentUser)
 
     return(
         <BrowserRouter>
