@@ -77,6 +77,7 @@ function PetSitters({currentUser}) {
             key = {petSitter.id}
             currentUser= {currentUser}
             petSitter = {petSitter}
+            petSitterAppointments = {petSitter.appointments}
             />
 
 

@@ -8,7 +8,6 @@ function PetSitterCards({currentUser, petSitter}) {
     // const [appts, setAppts] = useState([])
 
 
-
     console.log(currentUser)
 
     console.log(petSitter)
@@ -60,8 +59,7 @@ function PetSitterCards({currentUser, petSitter}) {
             }
         });
     }
-
-
+   
     return(
         <div>
             <div key={petSitter.id}>

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import PetCard from "./ PetCard";
 
 
-function MyAccount({currentUser}) {
+function MyAccount({currentUser, appts}) {
     const [pets, setPets]  = useState([])
+
 
     useEffect(() => {
         fetch(`/pets/${currentUser.id}`)
@@ -11,7 +12,13 @@ function MyAccount({currentUser}) {
           .then(setPets);
       }, []);
 
+      useEffect(() => {
+        fetch(`/appointments/${currentUser.id}`)
+        .then((res) => res.json())
+        .then((data) => console.log(data), "this is ")
+      }, [currentUser]);
 
+      
       const displayPets = pets.map((pet) =>{
         return(
             <PetCard
@@ -75,7 +82,8 @@ function MyAccount({currentUser}) {
     return(
         <div>
             <h1>This is the PetSitters Account</h1>
-            {displayPets}           
+            {displayPets}   
+            {appts}        
             {/* { pets.map((pet) => (
 
                 // <>

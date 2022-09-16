@@ -20,11 +20,7 @@ function NavBar() {
   const [appts, setAppts] = useState([])
 
 
-  useEffect(() => {
-    fetch(`/appointments/${currentUser.id}`)
-    .then((res) => res.json())
-    .then((data) => setAppts(data)).then(console.log(appts, "this is the thing"))
-  }, [currentUser])
+  
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -38,9 +34,9 @@ function NavBar() {
     });
   }, []);
 
-  // useEffect(()=> {
-  //   fetch("/")
-  // })
+ 
+
+ 
 
   if (!isAuthenticated) {
     return <div>
@@ -95,7 +91,7 @@ function NavBar() {
               <Login setCurrentUser={setCurrentUser}/>
             </Route>
             <Route path="/myaccount">
-              <MyAccount currentUser={currentUser}/>
+              <MyAccount appts={appts} currentUser={currentUser}/>
             </Route>
             <Route exact path= "/pets/:id">
               <UpdatePet currentUser={currentUser}/>
