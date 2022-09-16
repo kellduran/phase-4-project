@@ -46,6 +46,11 @@ function PetCard({pet, currentUser}){
 
 
     }
+
+
+    function handleDelete(){
+        console.log("hello")
+    }
         
 
 
@@ -64,7 +69,8 @@ function PetCard({pet, currentUser}){
                         <input type="text" placeholder="size" name="size" value={formData.size} onChange={handleChange}></input>
                         <input type="text" placeholder="image" name="image" value={formData.image} onChange={handleChange}></input>
                         <button>update pet</button>
-                    </form>    
+                    </form>
+                    <button onClick={ handleDelete }>Delete Pet</button>
 
 
                     {/* <Link to={'/pets/${id}'}>
