@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import PetSitterCards from "./PetSitterCards";
 
 
-function PetSitters() {
+function PetSitters({currentUser}) {
 
     const [petSitters, setPetSitters]  = useState([])
 
@@ -58,7 +59,7 @@ function PetSitters() {
         time: "",
         pet_name: "",
         pet_owner_id: "",
-        pet_setter_id: ""
+        pet_sitter_id: ""
     });
     
     
@@ -70,6 +71,17 @@ function PetSitters() {
 
 
   
+    const diplayPetSitters = petSitters.map((petSitter) => {
+        return(
+            <PetSitterCards 
+            key = {petSitter.id}
+            currentUser= {currentUser}
+            petSitter = {petSitter}
+            />
+
+
+        )
+    })
 
 
 
@@ -84,22 +96,11 @@ function PetSitters() {
                 
                 <button>Become a Pet Sitter</button>
             </form>
-            {petSitters.map((petSitter) => (
-                <>
-                    <h2> {petSitter.name} </h2>
-                    <p>{petSitter.description} </p>
-                    <img src={petSitter.image}></img>
-                    <h3> Rating: {petSitter.rating} </h3>
-                    <br />
-                    <h1>Book me for an appointment</h1>
-                    <form>
-                        <input type="text" placeholder="service" name="service" value={apptData.service} onChange={handleAppointmentChange}></input>
-                        <input type="text" placeholder="pet" name="pet_name" value={apptData.pet_name} onChange={handleAppointmentChange}></input>
 
-                        <button onClick={handleClick}>Book Me for an Appointment</button>
-                    </form>
-                </>
-            ))}
+            {/* <PetSitterCards currentUser= {currentUser}/> */}
+
+            {diplayPetSitters}
+            
         </div>
         
     )

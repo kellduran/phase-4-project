@@ -17,6 +17,14 @@ function NavBar() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
+  const [appts, setAppts] = useState([])
+
+
+  useEffect(() => {
+    fetch(`/appointments/${currentUser.id}`)
+    .then((res) => res.json())
+    .then((data) => setAppts(data)).then(console.log(appts, "this is the thing"))
+  }, [currentUser])
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -78,7 +86,7 @@ function NavBar() {
               <Home />
             </Route>
             <Route path="/petsitters">
-              <PetSitters />
+              <PetSitters currentUser={currentUser}/>
             </Route>
             <Route path="/signup">
               <Signup setCurrentUser={setCurrentUser} currentUser={currentUser}/>
