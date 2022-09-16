@@ -10,6 +10,32 @@ import {NavbarContainer,NavbarLinkContainer, NavbarLink} from "./styled-comps/Na
 
 
 function NavBar() {
+
+
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
+  const [appts, setAppts] = useState([])
+
+
+  
+
+  useEffect(() => {
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user);
+          setIsAuthenticated(true);
+          console.log(currentUser.id)
+        });
+      }
+    });
+  }, []);
+
+
+  console.log(setCurrentUser)
+
+
     return(
         <BrowserRouter>
         <NavbarContainer>
@@ -37,7 +63,7 @@ function NavBar() {
               <Home />
             </Route>
             <Route path="/petsitters">
-              <PetSitters />
+              <PetSitters currentUser={currentUser}/>
             </Route>
             <Route path="/signup">
               <Signup />
@@ -46,7 +72,15 @@ function NavBar() {
               <Login />
             </Route>
             <Route path="/myaccount">
-              <MyAccount/>
+
+              <MyAccount appts={appts} currentUser={currentUser}/>
+            </Route>
+            <Route exact path= "/pets/:id">
+              <UpdatePet currentUser={currentUser}/>
+            </Route>
+            <Route path="/logout">
+              <LoggedOut setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+
             </Route>
           </Switch>
         </NavbarContainer>

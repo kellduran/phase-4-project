@@ -49,6 +49,8 @@ function Signup() {
         });
     }
 
+    console.log(setCurrentUser)
+
     return(
         <BackgroundStyle>
             <StyledForm onSubmit={handleSubmit}><TitleStyle>Sign up page</TitleStyle>
