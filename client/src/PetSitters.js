@@ -46,6 +46,31 @@ function PetSitters() {
         .then(refreshPage())
     }
 
+    function handleClick(){
+        console.log("hello")
+
+
+    }
+
+    const [apptData, setApptData] = useState({
+        date: "",
+        service: "",
+        time: "",
+        pet_name: "",
+        pet_owner_id: "",
+        pet_setter_id: ""
+    });
+    
+    
+    function handleAppointmentChange(e) {
+        setApptData({
+            ...apptData, [e.target.name]: e.target.value,
+        });
+    }
+
+
+  
+
 
 
 
@@ -65,6 +90,14 @@ function PetSitters() {
                     <p>{petSitter.description} </p>
                     <img src={petSitter.image}></img>
                     <h3> Rating: {petSitter.rating} </h3>
+                    <br />
+                    <h1>Book me for an appointment</h1>
+                    <form>
+                        <input type="text" placeholder="service" name="service" value={apptData.service} onChange={handleAppointmentChange}></input>
+                        <input type="text" placeholder="pet" name="pet_name" value={apptData.pet_name} onChange={handleAppointmentChange}></input>
+
+                        <button onClick={handleClick}>Book Me for an Appointment</button>
+                    </form>
                 </>
             ))}
         </div>
