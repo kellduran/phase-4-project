@@ -14,7 +14,7 @@ function MyAccount({currentUser}) {
 
       const displayPets = pets.map((pet) =>{
         return(
-            <PetCard 
+            <PetCard
             key = {pet.id}
             pet = {pet}
             currentUser= {currentUser}

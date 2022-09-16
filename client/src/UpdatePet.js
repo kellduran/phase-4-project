@@ -17,9 +17,15 @@ function UpdatePet( { currentUser } ){
         })
     }
 
+
     function handleSubmit(e){
        e.preventDefault()
-        fetch(`/pets/`)
+       console.log(formData.name)
+
+    }
+
+    function petId() {
+        console.log("hello")
     }
     
     
@@ -33,6 +39,7 @@ function UpdatePet( { currentUser } ){
                 <input type="text" placeholder="size" name="size" value={formData.size} onChange={handleChange}></input>
                 <input type="text" placeholder="image" name="image" value={formData.image} onChange={handleChange}></input>
                 <button>update pet</button>
+                <button onClick={petId}>show pet id</button>
             </form>        
         </div>
     )
